@@ -11,6 +11,16 @@ import CommentList from './chapter5/CommentList';
 import NotificationList from './chapter6/NotificationList';
 import Counter from './chapter7/7.2/Counter';
 import CounterEffect from './chapter7/7.3/CounterEffect';
+import SetStateMerge from './chapter7/7.2/SetStateMerge';
+import EffectSummary from './chapter7/7.3/EffectSummary';
+import EffectContainer from './chapter7/7.3/EffectContainer';
+import TimerContainer from './chapter7/7.3/TimerContainer';
+import Timer from './chapter7/7.3/Timer';
+import HeavyCalculator from './chapter7/7.4/HeavyCalculator';
+import ParentComponent from './chapter7/7.5/ParentComponent';
+import TextInputWithFocusButton from './chapter7/7.6/TextInputWithFocusButton';
+import ComponentVariable from './chapter7/7.6/ComponentVariable';
+import InputContainer from './chapter7/7.8/ex1/ex2/InputContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -50,7 +60,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // 7장 예제
 root.render(
   // <Counter />
-  <CounterEffect />
+  // <CounterEffect />
+  // <SetStateMerge/>
+  // <EffectSummary />
+  // <EffectContainer/>
+  // <TimerContainer/>
+  // <HeavyCalculator/>
+  // <ParentComponent/>
+  // <TextInputWithFocusButton/>
+  // <ComponentVariable/>
+  <InputContainer/>
 )
 
 
