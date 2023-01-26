@@ -21,6 +21,16 @@ import ParentComponent from './chapter7/7.5/ParentComponent';
 import TextInputWithFocusButton from './chapter7/7.6/TextInputWithFocusButton';
 import ComponentVariable from './chapter7/7.6/ComponentVariable';
 import InputContainer from './chapter7/7.8/ex1/ex2/InputContainer';
+import Accommodate from './chapter7/7.8/Accommodate';
+import Toggle from './chapter8/8.1/Toggle';
+import MyButton from './chapter8/8.2/MyButton';
+import ConfirmButton from './chapter8/ConfirmButton';
+import Greeting from './chapter9/9.1/Greeting';
+import LoginControl from './chapter9/9.2/LoginControl';
+import Mailbox from './chapter9/9.3/Mailbox';
+import LoginControlRefactoring from './chapter9/9.3/LoginControlRefactoring';
+import MainPage from './chapter9/9.4/MainPage';
+import LandingPage from './chapter9/LandingPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -58,7 +68,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 // 7장 예제
-root.render(
+// root.render(
   // <Counter />
   // <CounterEffect />
   // <SetStateMerge/>
@@ -69,7 +79,26 @@ root.render(
   // <ParentComponent/>
   // <TextInputWithFocusButton/>
   // <ComponentVariable/>
-  <InputContainer/>
+  // <InputContainer/>
+  // <Accommodate/>
+// )
+
+// 8장 예제
+// root.render(
+  // <Toggle/>
+  // <MyButton/>
+  // <ConfirmButton/>
+// )
+
+// 9장 예제
+const messages = ['React', 'Re: React', 'Re:Re: React'];
+root.render(
+  // <Greeting isLoggedIn = {0}/>
+  // <LoginControl/>
+  // <Mailbox unreadMessages={messages}/>
+  // <LoginControlRefactoring/>
+  // <MainPage/>
+  <LandingPage/>
 )
 
 

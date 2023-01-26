@@ -7,7 +7,16 @@ function useInput(initialValue) {
     setInputValue(e.target.value);
   };
 
-  return [inputValue, handleChange];
+  // const handleSubmit = () => {
+  //   alert(inputValue);
+  //   setInputValue('');
+  // };
+
+  const reset = () => {
+    setInputValue('');
+  }
+
+  return [inputValue, handleChange, reset];
 }
 
 export default useInput;
