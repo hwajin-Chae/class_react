@@ -37,6 +37,9 @@ import NameForm from './chapter11/11.2/NameForm';
 import EssayForm from './chapter11/11.3/EssayForm';
 import FlavorForm from './chapter11/11.3/FlavorForm';
 import FileInput from './chapter11/11.3/FileInput';
+import Reservation from './chapter11/11.4/Reservation';
+import ReservationRefactoring from './chapter11/11.4/ReservationRefactoring';
+import SignUp from './chapter11/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -119,7 +122,10 @@ root.render(
   // <NameForm/>
   // <EssayForm/>
   // <FlavorForm/>
-  <FileInput/>
+  // <FileInput/>
+  // <Reservation/>
+  // <ReservationRefactoring/>
+  <SignUp/>
 );
 
 
