@@ -45,6 +45,10 @@ import WelcomeDialog from './chapter13/13.1.1.1/WelcomeDialog';
 import SplitPaneSection from './chapter13/13.1.1.2/SplitPaneSection';
 import DialogContainer from './chapter13/13.1.2/DialogContainer';
 import SignUpDialog from './chapter13/13.1.3/SignUpDialog';
+import ProfileCard from './chapter13/ProfileCard';
+import MainContent from './chapter14/MainContent';
+import DarkOrLight from './chapter14/DarkOrLight';
+import StyledPage from './chapter15/StyledPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -141,12 +145,29 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 // 13장 예제
-root.render(
+// root.render(
   // <WelcomeDialog />
   // <SplitPaneSection/>
   // <DialogContainer />
-  <SignUpDialog />
+  // <SignUpDialog />
+//   <ProfileCard />
+// )
+
+
+// 14장 예제
+// root.render(
+//   // <MainContent />
+//   <DarkOrLight />
+// );
+
+
+// 15장 예제
+root.render(
+  <StyledPage />
 )
+
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
