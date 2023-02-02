@@ -49,6 +49,7 @@ import ProfileCard from './chapter13/ProfileCard';
 import MainContent from './chapter14/MainContent';
 import DarkOrLight from './chapter14/DarkOrLight';
 import StyledPage from './chapter15/StyledPage';
+import SimpleRouter from './chapter16/SimpleRouter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -162,10 +163,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 // 15장 예제
-root.render(
-  <StyledPage />
-)
+// root.render(
+//   <StyledPage />
+// )
 
+
+// 16장 예제
+root.render(
+  <SimpleRouter />  
+)
 
 
 
