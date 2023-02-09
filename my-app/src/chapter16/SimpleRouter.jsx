@@ -4,6 +4,7 @@ import GamePage from './GamePage';
 import HotGamePage from './HotGamePage';
 import MainPage from './MainPage';
 import NewGamePage from './NewGamePage';
+import NoMatchPage from './NoMatchPage';
 import PlacePage from './PlacePage';
 
 // rsf -> reactjs code snippet
@@ -60,7 +61,9 @@ function SimpleRouter(props) {
           <Route path="new" element={<NewGamePage />}/>
         </Route>
         
-
+        {/* 아래 *의 의미 = match anything */}
+        {/* 위에 설정한 라우팅 경로 이외의 경우 */}
+        <Route path="*" element={<NoMatchPage/>} />
       </Routes>
     </BrowserRouter>
   );

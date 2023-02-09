@@ -51,6 +51,11 @@ function App() {
   }, []);
 
 
+  // *** 로컬 스토리지에 저장 ***
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, []);
+
 
   // todos 배열에 새 객체를 추가하기 위한 handleInsert() 함수 정의
   // 새 객체를 만들 때마다 id 값에 1씩 더해주어야 하는데, useRef()를 사용하여 변수 생성
@@ -100,7 +105,7 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id ));
     
     // 로컬 스토리지 저장
-      localStorage.setItem('todos', JSON.stringify(todos.filter((todo) => todo.id !== id )));
+    //   localStorage.setItem('todos', JSON.stringify(todos.filter((todo) => todo.id !== id )));
 
     }, [todos]);
 
@@ -125,8 +130,8 @@ function App() {
     ));
     
   // 로컬 스토리지에 저장
-      localStorage.setItem('todos', JSON.stringify(todos.map((todo) =>
-      todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
+    //   localStorage.setItem('todos', JSON.stringify(todos.map((todo) =>
+    //   todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
 
     }, [todos]);
 
