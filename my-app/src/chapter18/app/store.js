@@ -11,3 +11,5 @@ export const store = configureStore({
     counter: counterReducer,
   }
 });
+
+// import { Provider } from "react-redux";  -> index.js에 import 하기
