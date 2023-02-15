@@ -11,6 +11,7 @@ import Main from "./Pages/Main";
 
 import ProductDetail from "./Pages/ProductDetail"; // bootstrap CSS 추가
 import 'react-toastify/dist/ReactToastify.min.css'; // ReactToastify CSS 추가
+import Cart from "./Pages/Cart";
 
 const GlobalStyle = createGlobalStyle`
 /* 글로벌(공통) 스타일 정의 */
@@ -44,7 +45,9 @@ function App() {
           
           {/* ProductDetail에서 넘어온 라우터 */}
           {/* /detail/1로 접속하면, productId에 1이 담김 */}
-          <Route path="/detail/:productId" element={<ProductDetail />}/>
+          <Route path="/detail/:productId" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="*" element={<div>페이지가 존재하지 않습니다.</div>} />
         </Route>
       </Routes>
 

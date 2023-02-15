@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Nav, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -9,6 +9,9 @@ import { getProductById, selectSelectedProduct } from "../features/product/produ
 import data from "../data.json";
 import styled, { keyframes } from 'styled-components';
 import { toast } from 'react-toastify';
+import TabContents from '../components/TabContents';
+
+import { addItemToCount } from "../features/cart/cartSlice";
 
 
 
@@ -41,11 +44,15 @@ function ProductDetail(props) {
   const [ orderCount, setOrderCount ] = useState(1);  // 주문 수량 상태
 
 
+  // ***** 탭 만들기(조건부 렌더링)
+  const [showTabIndex, setShowTabIndex] = useState(0);  // 탭 index 상태
+
+
 
   // 처음 마운트 됐을 때 서버에 상품 id를 이용하여 데이터를 요청하고, 그 결과를 리덕스 스토어에 저장
   useEffect(() => {
     // 서버에서 특정 상품의 데이터를 가져오는 작업을 했다고 가정
-    // ... api call ...  ...> 5번 줄로 ㄱㄱㄱㄱㄱㄱ
+    // ... api call ...  ...> 8번 줄로 ㄱㄱㄱㄱㄱㄱ
     const foundProduct = data.find((product) => {
       return product.id === productId;
     });
@@ -115,8 +122,74 @@ function ProductDetail(props) {
           </Col>
 
           <Button variant="primary">주문하기</Button>
+          <Button variant="outline-danger"
+            onClick={() => {
+              dispatch(addItemToCount({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                count: orderCount
+              }));
+            }}
+          >장바구니</Button>
         </Col>
       </Row>
+
+
+      {/* 탭 UI */}
+      {/* defaultActiveKey : 기본으로 active 할 탭을 의미, active 클래스가 들어가있음 */}
+      <Nav variant="tabs" defaultActiveKey="link-0" className="my-3">
+        <Nav.Item>
+          <Nav.Link eventKey="link-0" onClick={() => { setShowTabIndex(0); }}>상세정보</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={() => { setShowTabIndex(1); }}>리뷰</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" onClick={() => { setShowTabIndex(2); }}>Q&amp;A</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-3" onClick={() => { setShowTabIndex(3); }}>반품/교환정보</Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      {/* 조건부 렌더링 - 1) 탭의 내용을 다 만들어놓고, 2) 조건부 렌더링 하기 ... (state && 필요) */}
+
+      {/* 방법1. 삼항연산자 이어쓰기 */}
+      {/* { showTabIndex === 0
+        ? <div>탭 내용1</div>
+        : showTabIndex === 1
+          ? <div>탭 내용2</div>
+          : showTabIndex === 2
+            ? <div>탭 내용3</div>
+            : showTabIndex === 3
+              ? <div>탭 내용4</div>
+              : null
+      } */}
+
+      {/* 방법2. 컴포넌트로 추출 (components 폴더 - TabContents.js )*/}
+      {/* <TabContents showTabIndex={showTabIndex}/> */}
+
+      {/* 방법3. 배열이나 객체 형태로 만들어서 조건부 렌더링 */}
+      {/* 배열 형태 */}
+      {
+        [
+          <div>탭 내용1</div>,
+          <div>탭 내용2</div>,
+          <div>탭 내용3</div>,
+          <div>탭 내용4</div>,
+        ][showTabIndex]
+      }
+      {/* 객체 형태 */}
+      {/* {
+        {
+          'detail': <div>탭 내용1</div>,
+          'review': <div>탭 내용2</div>,
+          'qa': <div>탭 내용3</div>,
+          'exchange': <div>탭 내용4</div>,
+        }['detail'] // -> setShowTabIndex(0); 안에, detail, review, qa, exchange 넣어주면 가능
+      } */}
+
     </Container>
   );
 }

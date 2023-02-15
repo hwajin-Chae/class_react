@@ -11,8 +11,13 @@ import garminImg from "../images/garmin.jpg";
 
 // 서버에서 받아온 데이터라고 가정
 import data from "../data.json";
-import { getAllProducts } from "../features/product/productSlice";
+import { getAllProducts,
+  getMoreProducts,
+  getMoreProductsAsync,
+  selectProductList,
+  selectStatus } from "../features/product/productSlice";
 import ProductListItem from '../components/ProductListItem';
+import { getProducts } from '../api/productAPI';
 
 const MainBackground = styled.div`
   height: 500px;
@@ -26,10 +31,13 @@ function Main(props) {
   
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.product.productList);
+  const productList = useSelector(selectProductList);
   // data.json
 
-  console.log(productList);
+  // API 요청 상태 가져오기(로딩 상태)
+  // 로딩 만들기 추천 라이브러리: React-spinners, Lottie Files
+  const status = useSelector(selectStatus);
+
 
   // 처음 마운트 됐을 때 서버에 상품 목록 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 저장
@@ -39,6 +47,16 @@ function Main(props) {
     // ... api call... (api 요청하는 코드들)
     dispatch(getAllProducts(data));
   }, []);
+
+
+  const handleGetMoreProducts = async () => {
+    const result = await getProducts();
+    if (!result) return;
+
+    // 스토어에 dispatch로 요청 보내기
+    dispatch(getMoreProducts(result));
+  };
+
 
   return (
     <>
@@ -87,6 +105,8 @@ function Main(props) {
             axios.get('http://localhost:4000/products')
               .then((response) => {
                 console.log(response.data);
+                // 스토어에 dispatch로 요청 보내기
+                dispatch(getMoreProducts(response.data));
               })
               .catch((error) => {
                 console.error(error);
@@ -94,6 +114,19 @@ function Main(props) {
           }}
         >
           더보기
+        </Button>
+
+
+        {/* 위 HTTP 요청 코드를 함수로 만들어서 api 폴더로 추출하고 async/await로 바꾸기 */}
+        <Button variant="secondary" className="mb-4" onClick={handleGetMoreProducts}>
+          더보기
+        </Button>
+
+        {/* thunk (리덕스 라이브러리) 를 이용한 비동기 작업 처리하기 */}
+        <Button variant="secondary" className="mb-4"
+          onClick={() => dispatch(getMoreProductsAsync())}
+        >
+          더보기 {status}
         </Button>
       </section>
     </>
