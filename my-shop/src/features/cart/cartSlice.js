@@ -2,18 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartList: [
-    {
-      id: "1",
-      title: "Arcsaber 11 Pro",
-      price: 299000,
-      count: 2
-    },
-    {
-      id: "3",
-      title: "Aerus Z",
-      price: 199000,
-      count: 1
-    },
+    // {
+    //   id: "1",
+    //   title: "Arcsaber 11 Pro",
+    //   price: 299000,
+    //   count: 2
+    // },
+    // {
+    //   id: "3",
+    //   title: "Aerus Z",
+    //   price: 199000,
+    //   count: 1
+    // },
   ]
 };
 
@@ -42,11 +42,24 @@ const cartSlice = createSlice({
     addItemToCart: (state, { payload: item }) => {
       // item = { id, title, price, count }를 받아옴
       // find() 등을 사용하여 해당 상품이 있는지 찾고
+      console.log(item);
+      const targetItem = state.cartList.find((cart) => cart.id === item.id);
+      if (targetItem) {
+        targetItem.count += item.count;
+      } else {
+        state.cartList.push(item);
+      }
+    },
+
+    // Quiz: 장바구니에서 삭제
+    removeItemFromCart: (state, { payload: id }) => {
+      const targetIndex = state.cartList.findIndex((cart) => cart.id === id);
+      state.cartList.splice(targetIndex, 1);
     }
   }
 });
 
-export const { increaseCount, decreaseCount, addItemToCount } = cartSlice.actions;
+export const { increaseCount, decreaseCount, addItemToCart, removeItemFromCart } = cartSlice.actions;
 
 export const selectCartList = state => state.cart.cartList;
 

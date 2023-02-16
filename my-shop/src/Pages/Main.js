@@ -7,7 +7,7 @@ import axios from "axios";
 // Dispatch -> 스토어에 데이터 보냄 / Selector -> 스토어에서 데이터 가져옴
 
 // 리액트(JS)에서 이미지 파일 import 하는법
-import garminImg from "../images/garmin.jpg";
+import yonexImg from "../images/yonex.jpg";
 
 // 서버에서 받아온 데이터라고 가정
 import data from "../data.json";
@@ -18,10 +18,11 @@ import { getAllProducts,
   selectStatus } from "../features/product/productSlice";
 import ProductListItem from '../components/ProductListItem';
 import { getProducts } from '../api/productAPI';
+import LatestView from '../components/LatestView';
 
 const MainBackground = styled.div`
   height: 500px;
-  background-image: url(${garminImg});
+  background-image: url(${yonexImg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -129,6 +130,8 @@ function Main(props) {
           더보기 {status}
         </Button>
       </section>
+
+      <LatestView />
     </>
   );
 }
